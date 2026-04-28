@@ -1,0 +1,62 @@
+
+shoe_34.png
+size: 288,96
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_49
+  rotate: false
+  xy: 146, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+34_50
+  rotate: false
+  xy: 259, 3
+  size: 26, 30
+  orig: 26, 30
+  offset: 0, 0
+  index: -1
+34_51
+  rotate: true
+  xy: 212, 4
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+34_52
+  rotate: true
+  xy: 2, 28
+  size: 65, 142
+  orig: 67, 142
+  offset: 0, 0
+  index: -1
+34_53
+  rotate: false
+  xy: 180, 3
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+34_54
+  rotate: true
+  xy: 64, 2
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+34_55
+  rotate: true
+  xy: 146, 35
+  size: 58, 134
+  orig: 58, 134
+  offset: 0, 0
+  index: -1
+34_56
+  rotate: true
+  xy: 2, 2
+  size: 24, 60
+  orig: 24, 60
+  offset: 0, 0
+  index: -1

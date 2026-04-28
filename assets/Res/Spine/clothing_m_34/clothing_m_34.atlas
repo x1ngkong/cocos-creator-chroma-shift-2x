@@ -1,0 +1,48 @@
+
+clothing_m_34.png
+size: 2024,468
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_38
+  rotate: false
+  xy: 1624, 17
+  size: 201, 125
+  orig: 201, 125
+  offset: 0, 0
+  index: -1
+34_40
+  rotate: false
+  xy: 1827, 42
+  size: 119, 100
+  orig: 119, 100
+  offset: 0, 0
+  index: -1
+34_41
+  rotate: false
+  xy: 1624, 144
+  size: 397, 322
+  orig: 489, 324
+  offset: 11, 2
+  index: -1
+34_42
+  rotate: false
+  xy: 813, 12
+  size: 417, 454
+  orig: 417, 454
+  offset: 0, 0
+  index: -1
+34_43
+  rotate: false
+  xy: 1232, 34
+  size: 390, 432
+  orig: 390, 432
+  offset: 0, 0
+  index: -1
+34_44
+  rotate: false
+  xy: 2, 2
+  size: 809, 464
+  orig: 809, 464
+  offset: 0, 0
+  index: -1

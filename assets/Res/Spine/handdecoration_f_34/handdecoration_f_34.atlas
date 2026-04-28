@@ -1,0 +1,90 @@
+
+handdecoration_f_34.png
+size: 200,524
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_26
+  rotate: false
+  xy: 64, 30
+  size: 47, 92
+  orig: 47, 92
+  offset: 0, 0
+  index: -1
+34_27
+  rotate: false
+  xy: 2, 25
+  size: 60, 199
+  orig: 60, 199
+  offset: 0, 0
+  index: -1
+34_28
+  rotate: true
+  xy: 128, 129
+  size: 73, 52
+  orig: 73, 52
+  offset: 0, 0
+  index: -1
+34_29
+  rotate: true
+  xy: 139, 204
+  size: 83, 56
+  orig: 83, 56
+  offset: 0, 0
+  index: -1
+34_30
+  rotate: false
+  xy: 150, 19
+  size: 38, 48
+  orig: 38, 48
+  offset: 0, 0
+  index: -1
+34_31
+  rotate: false
+  xy: 150, 69
+  size: 28, 58
+  orig: 28, 58
+  offset: 0, 0
+  index: -1
+34_32
+  rotate: false
+  xy: 64, 124
+  size: 62, 100
+  orig: 62, 100
+  offset: 0, 0
+  index: -1
+34_33
+  rotate: false
+  xy: 2, 226
+  size: 135, 295
+  orig: 135, 295
+  offset: 0, 0
+  index: -1
+34_34
+  rotate: false
+  xy: 113, 13
+  size: 35, 109
+  orig: 35, 109
+  offset: 0, 0
+  index: -1
+34_35
+  rotate: false
+  xy: 139, 289
+  size: 53, 232
+  orig: 53, 232
+  offset: 0, 0
+  index: -1
+34_36
+  rotate: false
+  xy: 2, 2
+  size: 15, 21
+  orig: 15, 21
+  offset: 0, 0
+  index: -1
+34_37
+  rotate: false
+  xy: 19, 4
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: -1

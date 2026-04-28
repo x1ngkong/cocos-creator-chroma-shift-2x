@@ -1,0 +1,27 @@
+
+hair_b_34.png
+size: 200,116
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_60
+  rotate: false
+  xy: 117, 13
+  size: 40, 101
+  orig: 40, 101
+  offset: 0, 0
+  index: -1
+34_61
+  rotate: false
+  xy: 159, 34
+  size: 36, 80
+  orig: 36, 80
+  offset: 0, 0
+  index: -1
+34_62
+  rotate: true
+  xy: 2, 2
+  size: 112, 113
+  orig: 112, 113
+  offset: 0, 0
+  index: -1

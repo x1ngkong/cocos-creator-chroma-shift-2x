@@ -1,0 +1,62 @@
+
+clothing_f_34.png
+size: 664,316
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_18
+  rotate: true
+  xy: 583, 21
+  size: 93, 68
+  orig: 93, 68
+  offset: 0, 0
+  index: -1
+34_19
+  rotate: true
+  xy: 342, 56
+  size: 258, 116
+  orig: 258, 116
+  offset: 0, 0
+  index: -1
+34_20
+  rotate: false
+  xy: 501, 2
+  size: 80, 112
+  orig: 80, 112
+  offset: 0, 0
+  index: -1
+34_21
+  rotate: true
+  xy: 429, 6
+  size: 48, 70
+  orig: 48, 70
+  offset: 0, 0
+  index: -1
+34_22
+  rotate: true
+  xy: 342, 5
+  size: 49, 85
+  orig: 49, 85
+  offset: 0, 0
+  index: -1
+34_23
+  rotate: true
+  xy: 2, 25
+  size: 289, 128
+  orig: 289, 128
+  offset: 0, 0
+  index: -1
+34_25
+  rotate: true
+  xy: 460, 116
+  size: 198, 199
+  orig: 198, 199
+  offset: 0, 0
+  index: -1
+34_39
+  rotate: true
+  xy: 132, 50
+  size: 264, 208
+  orig: 264, 208
+  offset: 0, 0
+  index: -1

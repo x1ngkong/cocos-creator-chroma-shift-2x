@@ -1,0 +1,48 @@
+
+hairdecoration_f_34.png
+size: 364,148
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+34_0
+  rotate: true
+  xy: 298, 100
+  size: 43, 61
+  orig: 43, 61
+  offset: 0, 0
+  index: -1
+34_1
+  rotate: true
+  xy: 298, 48
+  size: 50, 59
+  orig: 50, 59
+  offset: 0, 0
+  index: -1
+34_3
+  rotate: true
+  xy: 320, 11
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+34_4
+  rotate: false
+  xy: 298, 5
+  size: 20, 41
+  orig: 20, 41
+  offset: 0, 0
+  index: -1
+34_5
+  rotate: false
+  xy: 2, 2
+  size: 175, 141
+  orig: 175, 141
+  offset: 0, 0
+  index: -1
+34_6
+  rotate: true
+  xy: 179, 3
+  size: 140, 117
+  orig: 140, 121
+  offset: 0, 4
+  index: -1
