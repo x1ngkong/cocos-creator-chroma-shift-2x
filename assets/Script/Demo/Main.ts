@@ -6,6 +6,8 @@
  * @Description : 主入口脚本
  **************************************************************************************/
 
+import { ToastMgr } from "./ToastMgr";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -17,5 +19,6 @@ export class Main extends cc.Component {
     protected onLoad(): void {
         const spine = cc.instantiate(this.spinePrefab);
         spine.parent = this.node;
+        ToastMgr.Show("Welcome to Chroma Shift Demo");
     }
 }

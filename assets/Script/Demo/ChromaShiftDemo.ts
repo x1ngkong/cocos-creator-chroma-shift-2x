@@ -92,21 +92,21 @@ export class ChromaShiftDemo extends cc.Component {
         target.SetSaturation(value);
     }
 
-    /** 点击事件：透明度增加 15 */
+    /** 点击事件：透明度增加 51 */
     public OnClickAlphaUp(): void {
         const target = this.GetTarget();
         if (!target) return;
 
-        const value = Math.min(255, target.GetAlpha() + 15);
+        const value = Math.min(255, target.GetAlpha() + 51);
         target.SetAlpha(value);
     }
 
-    /** 点击事件：透明度降低 15 */
+    /** 点击事件：透明度降低 51 */
     public OnClickAlphaDown(): void {
         const target = this.GetTarget();
         if (!target) return;
 
-        const value = Math.max(0, target.GetAlpha() - 15);
+        const value = Math.max(0, target.GetAlpha() - 51);
         target.SetAlpha(value);
     }
 
