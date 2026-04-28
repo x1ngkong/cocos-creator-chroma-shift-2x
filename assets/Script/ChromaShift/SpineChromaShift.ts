@@ -31,4 +31,18 @@ export class SpineChromaShift extends ChromaShiftBase {
         }
         return this.skeleton.getMaterial(0) as cc.Material;
     }
+
+    /** 将指定材质设置回 Spine 的第 0 个材质槽。 */
+    protected SetTargetMaterial(material: cc.Material): void {
+        if (!this.skeleton) {
+            cc.warn("[SpineChromaShift] Missing sp.Skeleton target.");
+            return;
+        }
+        this.skeleton.setMaterial(0, material);
+    }
+
+    /** Spine 的引擎默认材质为 builtin-2d-spine.mtl。 */
+    protected GetOriginalMaterialName(): string {
+        return "2d-spine";
+    }
 }

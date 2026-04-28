@@ -110,13 +110,22 @@ export class ChromaShiftDemo extends cc.Component {
         target.SetAlpha(value);
     }
 
-    /** 点击事件：恢复 Inspector 默认参数 */
-    public OnClickReset(): void {
+    /** 点击事件：恢复原始材质 */
+    public OnClickResetToOriginal(): void {
         const target = this.GetTarget();
         if (!target) return;
 
-        target.ResetToDefaults();
+        target.ResetToOriginal();
     }
+
+    /** 点击事件：重置为改色材质 */
+    public OnClickResetToChromaShift(): void {
+        const target = this.GetTarget();
+        if (!target) return;
+
+        target.ResetToChromaShift();
+    }
+
 
     /** 点击事件：从本地存储恢复参数 */
     public OnClickLoadSaved(): void {
@@ -141,6 +150,7 @@ export class ChromaShiftDemo extends cc.Component {
         }
 
         this.statusLabel.string =
+            `材质：${target.IsUsingChromaShiftMaterial() ? "改色材质" : "默认材质"}\n` +
             `颜色：${target.GetColor().toUpperCase()}\n` +
             `亮度：${target.GetBrightness().toFixed(1)}\n` +
             `饱和度：${target.GetSaturation().toFixed(1)}\n` +

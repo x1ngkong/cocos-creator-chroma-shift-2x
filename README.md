@@ -2,13 +2,14 @@
 
 基于 **Cocos Creator 2.x** 的运行时换色工具。
 
-Chroma Shift 会在片元着色器中先把原始贴图转为灰度，再叠加目标色、亮度、饱和度和透明度参数。它可以用于 `cc.Sprite`，也可以用于 `sp.Skeleton`。
+Chroma Shift 支持在引擎默认材质和改色材质之间切换。角色可以先使用原始材质显示本色；当调用换色接口时，组件会自动切到 `ChromaShift.mtl`，并在片元着色器中把原始贴图转为灰度，再叠加目标色、亮度、饱和度和透明度参数。
 
 ## 功能特性
 
 - 基于灰度的运行时换色，不需要为每种颜色导出新贴图。
 - 同一份 `ChromaShift.effect` 同时支持 Sprite 和 Spine。
 - 支持目标色、亮度、饱和度、透明度调节。
+- 支持一键还原引擎默认材质，再次调色时自动切回改色材质。
 - 支持通过 `storageKey` 将参数保存到 `localStorage`。
 - 不依赖业务框架，可直接拷贝到任意 Cocos Creator 2.x 项目。
 - 附带 Demo 测试脚本，方便快速验证 Spine 换色效果。
@@ -43,6 +44,7 @@ ChromaShift.effect
 
 ChromaShiftBase
     ├── 管理 color / brightness / saturation / alpha
+    ├── 在默认材质和 ChromaShift.mtl 之间切换
     ├── 写入材质 uniform
     └── 保存 / 读取 localStorage
 
@@ -53,7 +55,7 @@ SpineChromaShift
     └── 从 sp.Skeleton.getMaterial(0) 获取当前材质
 ```
 
-设计重点：脚本**不创建材质**，只读取目标渲染组件上已经绑定好的 `ChromaShift.mtl`，然后写入 uniform 参数。这样材质资源、Effect 资源和运行时参数职责清晰，也避免在 Inspector 里重复配置 Effect。
+设计重点：脚本**不创建材质**。`chromaShiftMaterial` 在 Inspector 中引用 `db://assets/resources/Materals/ChromaShift.mtl`；目标渲染组件可以先使用引擎默认材质，真正调色或改属性前，脚本会自动把目标材质槽切到 `ChromaShift.mtl` 后再写入 uniform 参数。
 
 ## Shader 流程
 
@@ -83,10 +85,11 @@ alpha = 原始 alpha * u_alpha
 ## Sprite 使用方式
 
 1. 创建 `ChromaShift.mtl`，并绑定 `ChromaShift.effect`。
-2. 将 `ChromaShift.mtl` 绑定到目标 `cc.Sprite` 的 `Materials[0]`。
-3. 在同一节点上挂 `SpriteChromaShift`。
-4. 在 Inspector 中设置默认颜色、亮度、饱和度。
-5. 如果需要持久化，填写唯一的 `storageKey`。
+2. 在目标 `cc.Sprite` 节点上挂 `SpriteChromaShift`。
+3. 将 `ChromaShift.mtl` 拖到组件的 `chromaShiftMaterial`。
+4. 目标 `cc.Sprite` 的 `Materials[0]` 可以先保持引擎默认材质；调用换色接口时会自动切到改色材质。
+5. 在 Inspector 中设置默认颜色、亮度、饱和度和透明度。
+6. 如果需要持久化，填写唯一的 `storageKey`。
 
 ```ts
 const shift = this.node.getComponent(SpriteChromaShift);
@@ -99,9 +102,10 @@ shift.SetAlpha(220);
 ## Spine 使用方式
 
 1. 创建 `ChromaShift.mtl`，并绑定 `ChromaShift.effect`。
-2. 将 `ChromaShift.mtl` 绑定到目标 `sp.Skeleton` 的 `Materials[0]`。
-3. 在同一节点上挂 `SpineChromaShift`。
-4. 如果需要持久化，填写唯一的 `storageKey`。
+2. 在目标 `sp.Skeleton` 节点上挂 `SpineChromaShift`。
+3. 将 `ChromaShift.mtl` 拖到组件的 `chromaShiftMaterial`。
+4. 目标 `sp.Skeleton` 的 `Materials[0]` 可以先保持 `builtin-2d-spine`；调用换色接口时会自动切到改色材质。
+5. 如果需要持久化，填写唯一的 `storageKey`。
 
 ```ts
 const shift = this.node.getComponent(SpineChromaShift);
@@ -122,7 +126,8 @@ shift.SetSaturation(0.8);
 shift.SetAlpha(200);
 
 shift.SetParams("#F8D7E8", 1.1, 0.8, 200);
-shift.ResetToDefaults();
+shift.ResetToOriginal();     // 切回引擎默认材质，例如 builtin-2d-spine
+shift.ResetToChromaShift();  // 切回 ChromaShift.mtl，并应用 Inspector 默认参数
 shift.LoadSaved();
 shift.Save();
 
@@ -130,6 +135,7 @@ const color = shift.GetColor();
 const brightness = shift.GetBrightness();
 const saturation = shift.GetSaturation();
 const alpha = shift.GetAlpha();
+const isChromaShift = shift.IsUsingChromaShiftMaterial();
 ```
 
 `storageKey` 为空时不会保存；多个对象需要独立保存参数时，请给每个组件设置不同的 `storageKey`。
@@ -142,21 +148,24 @@ const alpha = shift.GetAlpha();
 - `OnClickBrightnessUp` / `OnClickBrightnessDown`：调整亮度。
 - `OnClickSaturationUp` / `OnClickSaturationDown`：调整饱和度。
 - `OnClickAlphaUp` / `OnClickAlphaDown`：调整透明度。
-- `OnClickReset`：恢复 Inspector 默认参数。
+- `OnClickResetToOriginal`：恢复引擎默认材质，Spine 默认是 `builtin-2d-spine`。
+- `OnClickResetToChromaShift`：切回 `ChromaShift.mtl`，并恢复 Inspector 默认改色参数。
 - `OnClickLoadSaved`：从 `localStorage` 恢复保存参数。
 
 Demo 使用步骤：
 
-1. 场景里准备一个 Spine 节点，`Materials[0]` 绑定 `ChromaShift.mtl`。
+1. 场景里准备一个 Spine 节点，`Materials[0]` 可以保持默认 Spine 材质。
 2. 在该 Spine 节点上挂 `SpineChromaShift`。
-3. 新建一个空节点挂 `ChromaShiftDemo`。
-4. 将 `SpineChromaShift` 拖入 `spineTarget`。
-5. 将一个 Label 拖入 `statusLabel`，用于实时显示当前参数。
-6. 创建若干按钮，绑定上面的点击方法。
+3. 将 `ChromaShift.mtl` 拖到 `SpineChromaShift.chromaShiftMaterial`。
+4. 新建一个空节点挂 `ChromaShiftDemo`。
+5. 将 `SpineChromaShift` 拖入 `spineTarget`。
+6. 将一个 Label 拖入 `statusLabel`，用于实时显示当前材质和参数。
+7. 创建若干按钮，绑定上面的点击方法。
 
 `statusLabel` 会每帧显示：
 
 ```text
+材质：改色材质
 颜色：#F8D7E8FF
 亮度：1.0
 饱和度：1.0
@@ -167,6 +176,8 @@ Demo 使用步骤：
 ## 注意事项
 
 - `#ffffff` 表示“灰度后的白色染色”，不是恢复原图原始色彩。
+- 需要恢复原图原始渲染时，调用 `ResetToOriginal()` 切回引擎默认材质；之后任意换色接口都会自动切回 `ChromaShift.mtl`。
+- `chromaShiftMaterial` 必须配置为 `db://assets/resources/Materals/ChromaShift.mtl`，否则换色接口只会给出 warning，不会写入材质参数。
 - Spine 如果衣服、皮肤、头发在同一张 atlas 页上，整页都会被换色。需要精确换色时，请让可染色部件使用独立 atlas 页。
 - `预览RGBA` 是以白色灰度为基准计算的参数预览色，不代表贴图每个像素的真实最终色。
 - 当前 effect 使用普通 alpha 混合。如果项目依赖预乘 alpha、加法混合或特殊 slot 混合模式，建议额外派生对应 effect 版本。

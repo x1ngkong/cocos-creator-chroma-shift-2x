@@ -31,4 +31,18 @@ export class SpriteChromaShift extends ChromaShiftBase {
         }
         return this.sprite.getMaterial(0) as cc.Material;
     }
+
+    /** 将指定材质设置回 Sprite 的第 0 个材质槽。 */
+    protected SetTargetMaterial(material: cc.Material): void {
+        if (!this.sprite) {
+            cc.warn("[SpriteChromaShift] Missing cc.Sprite target.");
+            return;
+        }
+        this.sprite.setMaterial(0, material);
+    }
+
+    /** Sprite 的引擎默认材质为 builtin-2d-sprite.mtl。 */
+    protected GetOriginalMaterialName(): string {
+        return "2d-sprite";
+    }
 }
